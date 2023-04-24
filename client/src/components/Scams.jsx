@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const [scams, setScams] = useState([]);
 
-const Scams = (props) => {
+const Scam = (props) => {
     <>
         <div>
             <h1>{props.scam.title}</h1>
@@ -18,10 +18,36 @@ const Scams = (props) => {
 useEffect(() => {
     async function getScams() {
         const response = await fetch(`http://localhost:3000/scam`)
+
+        if(!response.ok) {
+            const message = `An error has occured: ${response.statusText}`;
+            window.alert(message);
+            return;
+        }
+
+        const scams = await response.json();
+        // console.log(Scams);
+        setScams(scams);
     }
 
-    const scams = await response.json();
-    
-})
+    getScams();
+    return;
+}, [scams.length]);
 
-export default Scams;
+ScamList = () => {
+    return scams.map((scam) => {
+        return (
+            <Scam scam = {scam} key={scam._id} />
+        );
+    });
+
+}
+
+return (
+    <div>
+        <h3>Scam List</h3>
+        {ScamList()}
+    </div>
+);
+
+export default ScamList;

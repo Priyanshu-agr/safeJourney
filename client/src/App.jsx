@@ -19,7 +19,7 @@ function App() {
       <SearchBar />
       </div>
       <div className='Scams'>
-      {/* <Scams /> */}
+      <Scams />
       </div>
     </>
   )
