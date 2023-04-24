@@ -4,6 +4,7 @@ require('dotenv').config();
 const bodyParser=require('body-parser');
 const https=require("https");
 const dbURL = process.env.DB_URL;
+const cors = require('cors');
 
 const Scam = require('./models/scam');
 
@@ -22,7 +23,9 @@ async function main() {
     console.log("Database connected");
 }
 
+
 const app = express();
+app.use(cors({origin: true, credentials: true}));
 app.use(express.urlencoded({ extended: true }));
 
 

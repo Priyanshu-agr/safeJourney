@@ -7,6 +7,8 @@ const scamSchema = new Schema({
     author: String,
     date: Date,
     location: String,
+    coordinatex: Number,
+    coordinatey: Number, 
     votes: {type: Number, default: 0}
 })
 
