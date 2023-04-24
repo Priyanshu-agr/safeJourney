@@ -26,12 +26,18 @@ app.get('/', (req, res) => {
     res.send("Hello from the server");
 })
 
+//Post request to add a new scam schema in ./models/scam.js
 app.post('/scam', async (req,res) => {
     const scam = new Scam(req.body);
     console.log(req.body);
     console.log(scam.title);
     await scam.save();
     res.send("Received");
+})
+
+app.get('/scam', async (req,res) => {
+    const scams = await Scam.find({});
+    res.send(scams);
 })
 
 const port = process.env.PORT || 3000;
