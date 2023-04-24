@@ -43,7 +43,7 @@ app.post('/scam', async (req,res) => {
 // Data retrieval from database in sorted order (descending of votes)
 app.get('/scam', async (req,res) => {
     const scams = await Scam.find({}).sort({votes: -1});
-    res.send(scams);
+    res.json(scams);
 })
 
 app.post('/scam/upvote', async (req,res) => {
