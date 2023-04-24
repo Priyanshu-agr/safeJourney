@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 
 // [x] Insert
 // [x] Retrieve
-// [ ] Upvote Downvote
+// [x] Upvote Downvote
 // [ ] Location based search
 
 //Post request to add a new scam schema in ./models/scam.js
@@ -40,9 +40,9 @@ app.post('/scam', async (req,res) => {
     res.send("Received");
 })
 
-// Data retrieval from database
+// Data retrieval from database in sorted order (descending of votes)
 app.get('/scam', async (req,res) => {
-    const scams = await Scam.find({});
+    const scams = await Scam.find({}).sort({votes: -1});
     res.send(scams);
 })
 
