@@ -26,10 +26,11 @@ app.get('/', (req, res) => {
     res.send("Hello from the server");
 })
 
-app.post('/scam', (req,res) => {
+app.post('/scam', async (req,res) => {
     const scam = new Scam(req.body);
     console.log(req.body);
     console.log(scam.title);
+    await scam.save();
     res.send("Received");
 })
 
