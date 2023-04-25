@@ -55,11 +55,12 @@ app.get('/', (req, res) => {
 app.post("/", async (req, res) => {
     //user location user allow us to fetch
     let query = req.body.location;
-    // console.log(query);
+    console.log(query);
     let userLati = query.latitudeUser;
     let userLng = query.longitudeUser;
     //   console.log(userLati); 
     //   console.log(userLng);
+    
 
     //distance between address searched 
     let key = BING_KEY;
