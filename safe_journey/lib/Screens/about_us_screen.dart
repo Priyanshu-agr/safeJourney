@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 
 class AboutUsScreen extends StatelessWidget {
   const AboutUsScreen({super.key});
+  static const routeName = '/AboutUsScreen';
 
   @override
   Widget build(BuildContext context) {

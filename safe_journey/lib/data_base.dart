@@ -8,7 +8,7 @@ class Data extends ChangeNotifier {
     "Home" : Icons.home,
     "Create Scam" : Icons.add,
     "Contact Us" : Icons.message_outlined,
-    "About Us" : Icons.ac_unit_rounded,
+    "About Us" : Icons.corporate_fare_outlined,
 };
 
   Map<String, IconData> get getappBarItems {

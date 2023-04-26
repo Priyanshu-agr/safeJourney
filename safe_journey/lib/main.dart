@@ -26,8 +26,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.purple, useMaterial3: true),
       home: ChangeNotifierProvider(
-          create: (context) => Data(),
-          child: const MyHomePage(title: 'Flutter Demo Home Page')),
+        create: (context) => Data(),
+        child: const MyHomePage(title: 'Flutter Demo Home Page'),
+      ),
     );
   }
 }
@@ -60,75 +61,113 @@ class _MyHomePageState extends State<MyHomePage> {
             MediaQuery.of(context).size.width > 400)
         ? Scaffold(
             backgroundColor: Color.fromARGB(255, 233, 159, 247),
-            appBar: AppBar(
-              backgroundColor: Color.fromARGB(255, 233, 159, 247),
-              centerTitle: true,
-              title: (MediaQuery.of(context).size.width > 885)
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              left: BorderSide(
-                                color: Colors.black,
-                                width: 1.5,
-                              ),
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              ...appbarList.map((e) {
-                                // return AppBarButton(title: e, index: appbarList.indexOf(e));
-                                return InkWell(
-                                  onTap: () {
-                                    final index = appbarList.indexOf(e);
-                                    print("${appbarList.indexOf(e)} : $e");
-                                    setState(() {
-                                      screenIdx = index;
-                                    });
-                                  },
-                                  child: Container(
-                                    decoration: const BoxDecoration(
-                                      border: Border(
-                                        bottom: BorderSide(
-                                          color: Colors.black,
-                                          width: 1.5,
-                                        ),
-                                        right: BorderSide(
-                                          color: Colors.black,
-                                          width: 1.5,
-                                        ),
-                                      ),
-                                    ),
-                                    padding: const EdgeInsets.all(8),
-                                    child: Text(
-                                      e,
-                                    ),
-                                  ),
-                                );
-                              }),
-                            ],
-                          ),
-                        ),
-                      ],
-                    )
-                  : Text(
-                      "SafeJourney",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineLarge
-                          ?.copyWith(fontWeight: FontWeight.bold),
-                    ),
-            ),
+            // appBar: AppBar(
+            //   backgroundColor: Color.fromARGB(255, 233, 159, 247),
+            //   centerTitle: true,
+            //   title: (MediaQuery.of(context).size.width > 885)
+            //       ? Row(
+            //           mainAxisAlignment: MainAxisAlignment.center,
+            //           children: [
+            //             Container(
+            //               decoration: const BoxDecoration(
+            //                 border: Border(
+            //                   left: BorderSide(
+            //                     color: Colors.black,
+            //                     width: 1.5,
+            //                   ),
+            //                 ),
+            //               ),
+            //               child: Row(
+            //                 children: [
+            //                   ...appbarList.map((e) {
+            //                     // return AppBarButton(title: e, index: appbarList.indexOf(e));
+            //                     return InkWell(
+            //                       onTap: () {
+            //                         final index = appbarList.indexOf(e);
+            //                         print("${appbarList.indexOf(e)} : $e");
+            //                         setState(() {
+            //                           screenIdx = index;
+            //                         });
+            //                       },
+            //                       child: Container(
+            //                         decoration: const BoxDecoration(
+            //                           border: Border(
+            //                             bottom: BorderSide(
+            //                               color: Colors.black,
+            //                               width: 1.5,
+            //                             ),
+            //                             right: BorderSide(
+            //                               color: Colors.black,
+            //                               width: 1.5,
+            //                             ),
+            //                           ),
+            //                         ),
+            //                         padding: const EdgeInsets.all(8),
+            //                         child: Text(
+            //                           e,
+            //                         ),
+            //                       ),
+            //                     );
+            //                   }),
+            //                 ],
+            //               ),
+            //             ),
+            //           ],
+            //         )
+            //       : Text(
+            //           "SafeJourney",
+            //           style: Theme.of(context)
+            //               .textTheme
+            //               .headlineLarge
+            //               ?.copyWith(fontWeight: FontWeight.bold),
+            //         ),
+            // ),
             body: Row(
               children: [
                 Expanded(
-                  flex: 3,
-                  child: Column(
-                    children: [
-
-                    ],
+                  flex: 5,
+                  child: Container(
+                    color: Color.fromARGB(255, 233, 159, 247),
+                    child: Column(
+                      children: [
+                        ...appbarItems.entries.map((e) {
+                          return Column(
+                            children: [
+                              (MediaQuery.of(context).size.width < 735)
+                                  ? ListTile(
+                                      title: Icon(e.value),
+                                      onTap: () {
+                                        final index = appbarList.indexOf(e.key);
+                                        print(
+                                            "${appbarList.indexOf(e.key)} : ${e.key}");
+                                        setState(() {
+                                          screenIdx = index;
+                                        });
+                                      },
+                                    )
+                                  : ListTile(
+                                      onTap: () {
+                                        final index = appbarList.indexOf(e.key);
+                                        print(
+                                            "${appbarList.indexOf(e.key)} : ${e.key}");
+                                        setState(() {
+                                          screenIdx = index;
+                                        });
+                                      },
+                                      leading: Icon(e.value),
+                                      title: Text(
+                                        e.key,
+                                        style: TextStyle(fontSize: 12),
+                                      ),
+                                    ),
+                              Divider(
+                                color: Colors.grey,
+                              ),
+                            ],
+                          );
+                        }).toList(),
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(flex: 20, child: Screens[screenIdx]),
@@ -200,7 +239,74 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                 ),
                 body: Screens[screenIdx],
-                drawer: AppDrawer(),
+                drawer: Drawer(
+                  child: SafeArea(
+                    child: Column(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            final index = appbarList.indexOf("Home");
+                            // print("${appbarList.indexOf(e.key)} : ${e.key}");
+                            setState(() {
+                              screenIdx = index;
+                            });
+                            // Navigator.of(context).pushNamed(HomeScreen.routeName);
+                            Navigator.of(context).pop();
+                          },
+                          child: ListTile(
+                            leading: Icon(Icons.home_filled),
+                            title: Text("Home"),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            final index = appbarList.indexOf("Create Scam");
+                            // print("${appbarList.indexOf(e.key)} : ${e.key}");
+                            setState(() {
+                              screenIdx = index;
+                            });
+                            // Navigator.of(context).pushNamed();
+                            Navigator.of(context).pop();
+                          },
+                          child: ListTile(
+                            leading: Icon(Icons.add),
+                            title: Text("Create Scam"),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            final index = appbarList.indexOf("Contact Us");
+                            // print("${appbarList.indexOf(e.key)} : ${e.key}");
+                            setState(() {
+                              screenIdx = index;
+                            });
+                            // Navigator.of(context).pushNamed(ContactUsPage.routeName);
+                            Navigator.of(context).pop();
+                          },
+                          child: ListTile(
+                            leading: Icon(Icons.message_outlined),
+                            title: Text("Contact Us"),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            final index = appbarList.indexOf("About Us");
+                            // print("${appbarList.indexOf(e.key)} : ${e.key}");
+                            setState(() {
+                              screenIdx = index;
+                            });
+                            // Navigator.of(context).pushNamed(AboutUsScreen.routeName);
+                            Navigator.of(context).pop();
+                          },
+                          child: ListTile(
+                            leading: Icon(Icons.corporate_fare_outlined),
+                            title: Text("About Us"),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               )
             : Scaffold(
                 backgroundColor: Color.fromARGB(255, 233, 159, 247),

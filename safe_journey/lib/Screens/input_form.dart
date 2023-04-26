@@ -9,6 +9,8 @@ import '../data_base.dart';
 class InputForm extends StatefulWidget {
   InputForm({super.key});
 
+  static const routeName = '/InputForm';
+
   @override
   State<InputForm> createState() => _InputFormState();
 }

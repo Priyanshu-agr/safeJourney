@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -10,13 +9,11 @@ import 'package:safe_journey/data_base.dart';
 import 'package:http/http.dart' as http;
 import 'package:safe_journey/models/scam_model.dart';
 
-
 // 395 - 345
-
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
-
+  static const routeName = '/HomeScreen';
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -52,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
         id: "id_hijklmnop_3",
         title: "Title2",
         body:
-        "This is the body for title3. Here we can add many things like reviews and comments or a brief description",
+            "This is the body for title3. Here we can add many things like reviews and comments or a brief description",
         author: "Author3",
         date: DateTime.now(),
         location: "location_3",
@@ -63,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
         id: "id_hijklmnop_4",
         title: "Title4",
         body:
-        "This is the body for title4. Here we can add many things like reviews and comments or a brief description",
+            "This is the body for title4. Here we can add many things like reviews and comments or a brief description",
         author: "Author4",
         date: DateTime.now(),
         location: "location_4",
@@ -74,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
         id: "id_hijklmnop_5",
         title: "Title5",
         body:
-        "This is the body for title5. Here we can add many things like reviews and comments or a brief description",
+            "This is the body for title5. Here we can add many things like reviews and comments or a brief description",
         author: "Author5",
         date: DateTime.now(),
         location: "location_5",
@@ -85,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
         id: "id_hijklmnop_6",
         title: "Title6",
         body:
-        "This is the body for title2. Here we can add many things like reviews and comments or a brief description",
+            "This is the body for title2. Here we can add many things like reviews and comments or a brief description",
         author: "Author6",
         date: DateTime.now(),
         location: "location_6",
@@ -96,14 +93,13 @@ class _HomeScreenState extends State<HomeScreen> {
         id: "id_hijklmnop_7",
         title: "Title7",
         body:
-        "This is the body for title7. Here we can add many things like reviews and comments or a brief description",
+            "This is the body for title7. Here we can add many things like reviews and comments or a brief description",
         author: "Author7",
         date: DateTime.now(),
         location: "location_7",
         votes: 10,
         coordinatex: 84.849436,
         coordinatey: 54.6482),
-
   ];
   Position? _currentPosition;
   @override
@@ -190,7 +186,20 @@ class _HomeScreenState extends State<HomeScreen> {
         // shrinkWrap: true,
         padding: EdgeInsets.all(10),
         children: [
-          if(MediaQuery.of(context).size.width > 883)
+          if(MediaQuery.of(context).size.width < 883 && MediaQuery.of(context).size.width > 400)
+            Center(
+              child: Container(
+                padding: EdgeInsets.only(bottom: 10),
+                child: Text(
+                  "SafeJourney",
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineLarge
+                      ?.copyWith(fontWeight: FontWeight.bold,fontSize: 40),
+                ),
+              ),
+            ),
+          if (MediaQuery.of(context).size.width > 883)
             Center(
               child: Text(
                 "SafeJourney",
@@ -200,7 +209,9 @@ class _HomeScreenState extends State<HomeScreen> {
           Center(
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 10),
-              width: (MediaQuery.of(context).size.width > 630) ? constraints.maxWidth * 0.65: constraints.maxWidth * 0.8,
+              width: (MediaQuery.of(context).size.width > 630)
+                  ? constraints.maxWidth * 0.65
+                  : constraints.maxWidth * 0.8,
               decoration: BoxDecoration(
                 color: Color.fromARGB(255, 231, 229, 229),
                 borderRadius: BorderRadius.circular(1000),
@@ -287,7 +298,7 @@ class _HomeScreenState extends State<HomeScreen> {
               shrinkWrap: true,
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 300,
-                childAspectRatio: 3 / 4.05,
+                childAspectRatio: 3 / 4.06,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
               ),
@@ -310,10 +321,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         Wrap(
-                          // fit: BoxFit.contain,
-                          children: [Text(scams[idx].body),]
-                        ),
-                        if(constraints.maxWidth > 390 || constraints.maxWidth < 345)
+                            // fit: BoxFit.contain,
+                            children: [
+                              Text(scams[idx].body),
+                            ]),
+                        if (constraints.maxWidth > 390 ||
+                            constraints.maxWidth < 345)
                           Text(
                             "Date : ${scams[idx].date.toString().substring(0, 10)}",
                           ),
