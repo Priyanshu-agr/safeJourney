@@ -143,6 +143,9 @@ class _InputFormState extends State<InputForm> {
                 location = locationcontroller.text;
               },
             ),
+            SizedBox(
+              height: 20,
+            ),
             ElevatedButton(
               onPressed: () {
                 SubmitForm();
