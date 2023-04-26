@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class Data extends ChangeNotifier {
-  var appBarTitle = [
-    "Home",
-    "Create Scam",
-    "Contact Us",
-    "About Us",
-  ];
+  var _appBarItems = {
+    "Home" : Icons.home,
+    "Create Scam" : Icons.add,
+    "Contact Us" : Icons.message_outlined,
+    "About Us" : Icons.ac_unit_rounded,
+};
 
-  List<String> get getappBarTitle {
-    return [...appBarTitle];
+  Map<String, IconData> get getappBarItems {
+    return {..._appBarItems};
   }
 
   final address = "http://localhost:3000";

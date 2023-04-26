@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -8,6 +9,10 @@ import 'package:provider/provider.dart';
 import 'package:safe_journey/data_base.dart';
 import 'package:http/http.dart' as http;
 import 'package:safe_journey/models/scam_model.dart';
+
+
+// 395 - 345
+
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -43,6 +48,62 @@ class _HomeScreenState extends State<HomeScreen> {
         votes: 10,
         coordinatex: 84.849436,
         coordinatey: 54.6482),
+    Scam(
+        id: "id_hijklmnop_3",
+        title: "Title2",
+        body:
+        "This is the body for title3. Here we can add many things like reviews and comments or a brief description",
+        author: "Author3",
+        date: DateTime.now(),
+        location: "location_3",
+        votes: 10,
+        coordinatex: 84.849436,
+        coordinatey: 54.6482),
+    Scam(
+        id: "id_hijklmnop_4",
+        title: "Title4",
+        body:
+        "This is the body for title4. Here we can add many things like reviews and comments or a brief description",
+        author: "Author4",
+        date: DateTime.now(),
+        location: "location_4",
+        votes: 10,
+        coordinatex: 84.849436,
+        coordinatey: 54.6482),
+    Scam(
+        id: "id_hijklmnop_5",
+        title: "Title5",
+        body:
+        "This is the body for title5. Here we can add many things like reviews and comments or a brief description",
+        author: "Author5",
+        date: DateTime.now(),
+        location: "location_5",
+        votes: 10,
+        coordinatex: 84.849436,
+        coordinatey: 54.6482),
+    Scam(
+        id: "id_hijklmnop_6",
+        title: "Title6",
+        body:
+        "This is the body for title2. Here we can add many things like reviews and comments or a brief description",
+        author: "Author6",
+        date: DateTime.now(),
+        location: "location_6",
+        votes: 10,
+        coordinatex: 84.849436,
+        coordinatey: 54.6482),
+    Scam(
+        id: "id_hijklmnop_7",
+        title: "Title7",
+        body:
+        "This is the body for title7. Here we can add many things like reviews and comments or a brief description",
+        author: "Author7",
+        date: DateTime.now(),
+        location: "location_7",
+        votes: 10,
+        coordinatex: 84.849436,
+        coordinatey: 54.6482),
+
   ];
   Position? _currentPosition;
   @override
@@ -111,6 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _getCurrentPosition() async {
     final hasPermission = await _handleLocationPermission();
+    print(hasPermission);
     if (!hasPermission) return;
     await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
         .then((Position position) {
@@ -124,19 +186,21 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return ListView(
-        shrinkWrap: true,
+        primary: true,
+        // shrinkWrap: true,
         padding: EdgeInsets.all(10),
         children: [
-          Center(
-            child: Text(
-              "SafeJourney",
-              style: TextStyle(fontSize: 100, fontWeight: FontWeight.bold),
+          if(MediaQuery.of(context).size.width > 883)
+            Center(
+              child: Text(
+                "SafeJourney",
+                style: TextStyle(fontSize: 100, fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
           Center(
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 10),
-              width: constraints.maxWidth * 0.65,
+              width: (MediaQuery.of(context).size.width > 630) ? constraints.maxWidth * 0.65: constraints.maxWidth * 0.8,
               decoration: BoxDecoration(
                 color: Color.fromARGB(255, 231, 229, 229),
                 borderRadius: BorderRadius.circular(1000),
@@ -195,6 +259,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(100),
                       onTap: () {
                         _getCurrentPosition();
+                        print("Thankyou for your location permission");
                       },
                       child: Row(
                         children: [
@@ -215,13 +280,14 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           if (scams.isNotEmpty)
             GridView.builder(
+              physics: NeverScrollableScrollPhysics(),
               padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
               itemCount: scams.length,
-              primary: true,
+              // primary: true,
               shrinkWrap: true,
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 300,
-                childAspectRatio: 3 / 3.5,
+                childAspectRatio: 3 / 4.05,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
               ),
@@ -243,16 +309,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text(scams[idx].body),
-                        Text(
-                          "Date : ${scams[idx].date.toString().substring(0, 10)}",
+                        Wrap(
+                          // fit: BoxFit.contain,
+                          children: [Text(scams[idx].body),]
                         ),
+                        if(constraints.maxWidth > 390 || constraints.maxWidth < 345)
+                          Text(
+                            "Date : ${scams[idx].date.toString().substring(0, 10)}",
+                          ),
                         Text("By ${scams[idx].author}"),
                       ]),
                 );
-                // return Container(
-                //   color: Colors.red,
-                // );
               },
             ),
         ],
