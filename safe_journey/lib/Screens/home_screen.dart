@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -239,12 +240,27 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           onSaved: (value) {
                             searchText = value;
+                            if (kDebugMode) {
+                              print("onSaved Triggered");
+                            }
                           },
                           onEditingComplete: () {
                             searchText = _searchController.text;
+                            if (kDebugMode) {
+                              print("onEditingComplete Triggered");
+                            }
                           },
                           onTapOutside: (_) {
                             searchText = _searchController.text;
+                            if (kDebugMode) {
+                              print("onTapOutside Triggered");
+                            }
+                          },
+                          onFieldSubmitted: (_){
+                            if (kDebugMode) {
+                              print("onFieldSubmit Triggered");
+                            }
+                            SubmitData();
                           },
                         ),
                       ),
