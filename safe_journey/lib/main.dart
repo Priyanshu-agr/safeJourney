@@ -10,8 +10,7 @@ import 'package:safe_journey/data_base.dart';
 import 'data_base.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() async {
-  await dotenv.load(fileName: ".env");
+void main() {
   runApp(const MyApp());
 }
 
