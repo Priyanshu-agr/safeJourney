@@ -16,7 +16,8 @@ class Data extends ChangeNotifier {
     return {..._appBarItems};
   }
 
-  final address = dotenv.get("ADDRESS");
+  // final address = dotenv.get("ADDRESS");
+  static const address = String.fromEnvironment("ADDRESS");
 
   Future<void> sendData(toSend) async {
     print(toSend);
@@ -33,6 +34,7 @@ class Data extends ChangeNotifier {
 
   Future<String> sendLocation(loc) async {
     print(loc);
+    print(address);
     final location = {'location': loc};
     final url = Uri.parse("$address/");
     final request = await http.post(
