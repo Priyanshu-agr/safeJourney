@@ -34,7 +34,6 @@ class Data extends ChangeNotifier {
 
   Future<String> sendLocation(loc) async {
     print(loc);
-    print(address);
     final location = {'location': loc};
     final url = Uri.parse("$address/");
     final request = await http.post(
