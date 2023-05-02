@@ -8,8 +8,10 @@ import 'package:safe_journey/Screens/home_screen.dart';
 import 'package:safe_journey/Screens/input_form.dart';
 import 'package:safe_journey/data_base.dart';
 import 'data_base.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 

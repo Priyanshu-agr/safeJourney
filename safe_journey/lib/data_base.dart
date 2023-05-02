@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 class Data extends ChangeNotifier {
@@ -15,7 +16,7 @@ class Data extends ChangeNotifier {
     return {..._appBarItems};
   }
 
-  final address = "http://localhost:3000";
+  final address = dotenv.get("ADDRESS");
 
   Future<void> sendData(toSend) async {
     print(toSend);
@@ -33,7 +34,7 @@ class Data extends ChangeNotifier {
   Future<String> sendLocation(loc) async {
     print(loc);
     final location = {'location': loc};
-    final url = Uri.parse("http://localhost:3000/");
+    final url = Uri.parse("$address/");
     final request = await http.post(
       url,
       body: location,
