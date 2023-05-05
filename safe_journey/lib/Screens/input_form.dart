@@ -146,11 +146,17 @@ class _InputFormState extends State<InputForm> {
             SizedBox(
               height: 20,
             ),
-            ElevatedButton(
-              onPressed: () {
-                SubmitForm();
-              },
-              child: Text("Submit"),
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: ElevatedButton(
+                onPressed: () {
+                  SubmitForm();
+                },
+                child: Container(
+                    child: Text("Submit"),
+                    padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                ),
+              ),
             ),
           ],
         ),
