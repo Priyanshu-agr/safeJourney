@@ -17,7 +17,6 @@ class Data extends ChangeNotifier {
   }
 
   // final address = dotenv.get("ADDRESS");
-  // final address = "https://safejourney.onrender.com";
   static const address = String.fromEnvironment("ADDRESS");
 
   Future<void> sendData(toSend) async {
