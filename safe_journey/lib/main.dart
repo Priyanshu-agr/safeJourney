@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:safe_journey/Screens/about_us_screen.dart';
 import 'package:safe_journey/Screens/address_screen.dart';
@@ -8,6 +9,7 @@ import 'package:safe_journey/Screens/home_screen.dart';
 import 'package:safe_journey/Screens/input_form.dart';
 import 'package:safe_journey/data_base.dart';
 import 'data_base.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() {
   runApp(const MyApp());
@@ -310,59 +312,119 @@ class _MyHomePageState extends State<MyHomePage> {
               )
             : Scaffold(
                 backgroundColor: Color.fromARGB(255, 233, 159, 247),
+                // backgroundColor: Color(0xff2A2929),
                 appBar: AppBar(
-                  backgroundColor: Color.fromARGB(255, 233, 159, 247),
+                  // toolbarOpacity: 1,
+                  backgroundColor: Colors.transparent,
+                  toolbarHeight: 70,
+                  // backgroundColor: Color.fromARGB(255, 233, 159, 247),
+                  // backgroundColor: Color(0xff2A2929),
                   centerTitle: true,
+                  // title: (MediaQuery.of(context).size.width > 630)
+                  //     ? Row(
+                  //         mainAxisAlignment: MainAxisAlignment.center,
+                  //         children: [
+                  //           Container(
+                  //             decoration: const BoxDecoration(
+                  //               border: Border(
+                  //                 left: BorderSide(
+                  //                   color: Colors.black,
+                  //                   width: 1.5,
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //             child: Row(
+                  //               children: [
+                  //                 ...appbarList.map((e) {
+                  //                   // return AppBarButton(title: e, index: appbarList.indexOf(e));
+                  //                   return InkWell(
+                  //                     onTap: () {
+                  //                       final index = appbarList.indexOf(e);
+                  //                       print("${appbarList.indexOf(e)} : $e");
+                  //                       setState(() {
+                  //                         screenIdx = index;
+                  //                       });
+                  //                     },
+                  //                     child: Container(
+                  //                       decoration: const BoxDecoration(
+                  //                         border: Border(
+                  //                           bottom: BorderSide(
+                  //                             color: Colors.black,
+                  //                             width: 1.5,
+                  //                           ),
+                  //                           right: BorderSide(
+                  //                             color: Colors.black,
+                  //                             width: 1.5,
+                  //                           ),
+                  //                         ),
+                  //                       ),
+                  //                       padding: const EdgeInsets.all(8),
+                  //                       child: Text(
+                  //                         e,
+                  //                       ),
+                  //                     ),
+                  //                   );
+                  //                 }),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ],
+                  //       )
+                  //     : Text(
+                  //         "SafeJourney",
+                  //         style: Theme.of(context)
+                  //             .textTheme
+                  //             .headlineLarge
+                  //             ?.copyWith(fontWeight: FontWeight.bold),
+                  //       ),
                   title: (MediaQuery.of(context).size.width > 630)
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                      ? SafeArea(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             Container(
-                              decoration: const BoxDecoration(
-                                border: Border(
-                                  left: BorderSide(
+                              margin: EdgeInsets.symmetric(vertical: 20),
+                              // color: Colors.grey,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 30),
+                                child: GNav(
+                                  gap: 8,
+                                  color: Colors.black,
+                                  activeColor: Colors.black,
+                                  tabBackgroundColor: Color.fromARGB(
+                                      255, 235, 192, 246),
+                                  padding: EdgeInsets.symmetric(horizontal: 16,vertical: 10),
+                                  tabActiveBorder: Border.all(
+                                    width: 1.2,
                                     color: Colors.black,
-                                    width: 1.5,
                                   ),
-                                ),
-                              ),
-                              child: Row(
-                                children: [
-                                  ...appbarList.map((e) {
-                                    // return AppBarButton(title: e, index: appbarList.indexOf(e));
-                                    return InkWell(
-                                      onTap: () {
-                                        final index = appbarList.indexOf(e);
-                                        print("${appbarList.indexOf(e)} : $e");
-                                        setState(() {
-                                          screenIdx = index;
-                                        });
-                                      },
-                                      child: Container(
-                                        decoration: const BoxDecoration(
-                                          border: Border(
-                                            bottom: BorderSide(
-                                              color: Colors.black,
-                                              width: 1.5,
-                                            ),
-                                            right: BorderSide(
-                                              color: Colors.black,
-                                              width: 1.5,
-                                            ),
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                    tabs: [
+                                      ...appbarItems.entries.map(
+                                        (e) => GButton(
+                                          iconSize: 33,
+                                          icon: e.value,
+                                          text: e.key,
+                                          textStyle: TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w500
                                           ),
                                         ),
-                                        padding: const EdgeInsets.all(8),
-                                        child: Text(
-                                          e,
-                                        ),
                                       ),
-                                    );
-                                  }),
-                                ],
+                                    ],
+                                  onTabChange: (idx){
+                                    // final index = appbarList.indexOf(e);
+                                    // print("${appbarList.indexOf(e)} : $e");
+                                    setState(() {
+                                      screenIdx = idx;
+                                    });
+                                  },
+                                  ),
                               ),
                             ),
                           ],
-                        )
+                        ),
+                      )
                       : Text(
                           "SafeJourney",
                           style: Theme.of(context)
