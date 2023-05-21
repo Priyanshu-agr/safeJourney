@@ -23,86 +23,89 @@ class _HomeScreenState extends State<HomeScreen> {
   final _searchController = TextEditingController();
   var searchText;
   String? _currentAddress;
-  List<Scam> scams = [
-    Scam(
-        id: "id_abcdefg",
-        title: "Title1",
-        body:
-            "This is the body for title1. Here we can add many things like reviews and comments or a brief description",
-        author: "Author1",
-        date: DateTime.now(),
-        location: "location_1",
-        votes: 3,
-        coordinatex: 21.54654,
-        coordinatey: 64.3146),
-    Scam(
-        id: "id_hijklmnop_2",
-        title: "Title2",
-        body:
-            "This is the body for title2. Here we can add many things like reviews and comments or a brief description",
-        author: "Author2",
-        date: DateTime.now(),
-        location: "location_2",
-        votes: 10,
-        coordinatex: 84.849436,
-        coordinatey: 54.6482),
-    Scam(
-        id: "id_hijklmnop_3",
-        title: "Title2",
-        body:
-            "This is the body for title3. Here we can add many things like reviews and comments or a brief description",
-        author: "Author3",
-        date: DateTime.now(),
-        location: "location_3",
-        votes: 10,
-        coordinatex: 84.849436,
-        coordinatey: 54.6482),
-    Scam(
-        id: "id_hijklmnop_4",
-        title: "Title4",
-        body:
-            "This is the body for title4. Here we can add many things like reviews and comments or a brief description",
-        author: "Author4",
-        date: DateTime.now(),
-        location: "location_4",
-        votes: 10,
-        coordinatex: 84.849436,
-        coordinatey: 54.6482),
-    Scam(
-        id: "id_hijklmnop_5",
-        title: "Title5",
-        body:
-            "This is the body for title5. Here we can add many things like reviews and comments or a brief description",
-        author: "Author5",
-        date: DateTime.now(),
-        location: "location_5",
-        votes: 10,
-        coordinatex: 84.849436,
-        coordinatey: 54.6482),
-    Scam(
-        id: "id_hijklmnop_6",
-        title: "Title6",
-        body:
-            "This is the body for title2. Here we can add many things like reviews and comments or a brief description",
-        author: "Author6",
-        date: DateTime.now(),
-        location: "location_6",
-        votes: 10,
-        coordinatex: 84.849436,
-        coordinatey: 54.6482),
-    Scam(
-        id: "id_hijklmnop_7",
-        title: "Title7",
-        body:
-            "This is the body for title7. Here we can add many things like reviews and comments or a brief description",
-        author: "Author7",
-        date: DateTime.now(),
-        location: "location_7",
-        votes: 10,
-        coordinatex: 84.849436,
-        coordinatey: 54.6482),
-  ];
+  // List<Scam> scams = [
+  //   Scam(
+  //       id: "id_abcdefg",
+  //       title: "Title1",
+  //       body:
+  //           "This is the body for title1. Here we can add many things like reviews and comments or a brief description",
+  //       author: "Author1",
+  //       date: DateTime.now(),
+  //       location: "location_1",
+  //       votes: 3,
+  //       coordinatex: 21.54654,
+  //       coordinatey: 64.3146),
+  //   Scam(
+  //       id: "id_hijklmnop_2",
+  //       title: "Title2",
+  //       body:
+  //           "This is the body for title2. Here we can add many things like reviews and comments or a brief description",
+  //       author: "Author2",
+  //       date: DateTime.now(),
+  //       location: "location_2",
+  //       votes: 10,
+  //       coordinatex: 84.849436,
+  //       coordinatey: 54.6482),
+  //   Scam(
+  //       id: "id_hijklmnop_3",
+  //       title: "Title2",
+  //       body:
+  //           "This is the body for title3. Here we can add many things like reviews and comments or a brief description",
+  //       author: "Author3",
+  //       date: DateTime.now(),
+  //       location: "location_3",
+  //       votes: 10,
+  //       coordinatex: 84.849436,
+  //       coordinatey: 54.6482),
+  //   Scam(
+  //       id: "id_hijklmnop_4",
+  //       title: "Title4",
+  //       body:
+  //           "This is the body for title4. Here we can add many things like reviews and comments or a brief description",
+  //       author: "Author4",
+  //       date: DateTime.now(),
+  //       location: "location_4",
+  //       votes: 10,
+  //       coordinatex: 84.849436,
+  //       coordinatey: 54.6482),
+  //   Scam(
+  //       id: "id_hijklmnop_5",
+  //       title: "Title5",
+  //       body:
+  //           "This is the body for title5. Here we can add many things like reviews and comments or a brief description",
+  //       author: "Author5",
+  //       date: DateTime.now(),
+  //       location: "location_5",
+  //       votes: 10,
+  //       coordinatex: 84.849436,
+  //       coordinatey: 54.6482),
+  //   Scam(
+  //       id: "id_hijklmnop_6",
+  //       title: "Title6",
+  //       body:
+  //           "This is the body for title2. Here we can add many things like reviews and comments or a brief description",
+  //       author: "Author6",
+  //       date: DateTime.now(),
+  //       location: "location_6",
+  //       votes: 10,
+  //       coordinatex: 84.849436,
+  //       coordinatey: 54.6482),
+  //   Scam(
+  //       id: "id_hijklmnop_7",
+  //       title: "Title7",
+  //       body:
+  //           "This is the body for title7. Here we can add many things like reviews and comments or a brief description",
+  //       author: "Author7",
+  //       date: DateTime.now(),
+  //       location: "location_7",
+  //       votes: 10,
+  //       coordinatex: 84.849436,
+  //       coordinatey: 54.6482),
+  // ];
+  List<Scam> scams = [];
+
   Position? _currentPosition;
+  bool isLoading = false;
   @override
   void dispose() {
     // TODO: implement dispose
@@ -112,6 +115,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void SubmitData() {
     if (_searchController.text.isNotEmpty) {
+      setState(() {
+        isLoading = true;
+      });
       final response = Provider.of<Data>(context, listen: false)
           .sendLocation(_searchController.text)
           .then((value) {
@@ -131,6 +137,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   coordinatey: element['coordinatey']);
             })
           ];
+        });
+        setState(() {
+          isLoading = false;
         });
         print(scams);
       });
@@ -187,7 +196,8 @@ class _HomeScreenState extends State<HomeScreen> {
         // shrinkWrap: true,
         padding: EdgeInsets.all(10),
         children: [
-          if(MediaQuery.of(context).size.width < 883 && MediaQuery.of(context).size.width > 400)
+          if (MediaQuery.of(context).size.width < 883 &&
+              MediaQuery.of(context).size.width > 400)
             Center(
               child: Container(
                 padding: EdgeInsets.only(bottom: 10),
@@ -196,7 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: Theme.of(context)
                       .textTheme
                       .headlineLarge
-                      ?.copyWith(fontWeight: FontWeight.bold,fontSize: 40),
+                      ?.copyWith(fontWeight: FontWeight.bold, fontSize: 40),
                 ),
               ),
             ),
@@ -233,11 +243,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: TextFormField(
                           controller: _searchController,
                           decoration: const InputDecoration(
-                            hintText: "Search",
-                            hintStyle: TextStyle(
-                              fontSize: 20,
-                            ),
-                          ),
+                              hintText: "Search",
+                              hintStyle: TextStyle(
+                                fontSize: 20,
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                color: Color(0xff0074fc),
+                                width: 1.5,
+                              ))),
+                          autofocus: false,
                           onSaved: (value) {
                             searchText = value;
                             if (kDebugMode) {
@@ -256,7 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               print("onTapOutside Triggered");
                             }
                           },
-                          onFieldSubmitted: (_){
+                          onFieldSubmitted: (_) {
                             if (kDebugMode) {
                               print("onFieldSubmit Triggered");
                             }
@@ -305,7 +320,16 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          if (scams.isNotEmpty)
+          if (isLoading)
+            Container(
+              height: MediaQuery.of(context).size.height * 0.5,
+              child: Center(
+                child: CircularProgressIndicator(
+                  color: Colors.lightBlue,
+                ),
+              ),
+            ),
+          if (scams.isNotEmpty && isLoading == false)
             GridView.builder(
               physics: NeverScrollableScrollPhysics(),
               padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
@@ -321,7 +345,8 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (context, idx) {
                 return Container(
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 190, 38, 204),
+                    // color: Color.fromARGB(255, 190, 38, 204),
+                    color: Colors.blue,
                     borderRadius: BorderRadius.circular(15),
                   ),
                   padding: EdgeInsets.all(10),
