@@ -64,6 +64,7 @@ app.post("/", async (req, res) => {
 
     //distance between address searched 
     let key = BING_KEY;
+    
     let url = `http://dev.virtualearth.net/REST/v1/Locations/${query}?&maxResults=${1}&key=${key}`
     // let url="https://dev.virtualearth.net/REST/v1/Locations/IN/"+query+"1%20Microsoft%20Way?o=JSON&key="+key;
 
