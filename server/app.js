@@ -45,6 +45,38 @@ var getDistance = function (latitude1, longitude1, latitude2, longitude2) {
     var d = R * c;
     return d; // returns the distance in meter
 };
+function addressTrimmed(add)
+{
+
+  add=add.trim();
+  add=add.replaceAll(" ","%");
+  let newAddress="";
+  let i=0;
+  let n=add.length;
+  while(i<n)
+  {
+    if(add[i]=="%")
+    {  
+      if((i+1)<n)
+      {
+        if(add[i+1]!="%")
+        {
+          newAddress+="%";
+        }
+      }
+      i++;
+      continue;
+    }
+    else
+    {
+      newAddress+=add[i];
+      i++;
+    }
+  }
+  // // console.log('3');
+  add=newAddress;
+  return add;
+}
 
 const BING_KEY = process.env.BING_MAP_KEY;
 
@@ -58,14 +90,15 @@ app.post("/", async (req, res) => {
     console.log(query);
     let userLati = query.latitudeUser;
     let userLng = query.longitudeUser;
-    //   console.log(userLati); 
-    //   console.log(userLng);
-    
+    let address=addressTrimmed(query);
+  console.log(address);
 
-    //distance between address searched 
-    let key = BING_KEY;
-    let url = `http://dev.virtualearth.net/REST/v1/Locations/${query}?&maxResults=${1}&key=${key}`
+  //distance between address searched 
+    let key=BING_KEY;
+    let url = "https://dev.virtualearth.net/REST/v1/Locations?q=" +address+"&output=json&key="+key;
     // let url="https://dev.virtualearth.net/REST/v1/Locations/IN/"+query+"1%20Microsoft%20Way?o=JSON&key="+key;
+
+
 
     const scams = await Scam.find({});
     const resScams = [];
