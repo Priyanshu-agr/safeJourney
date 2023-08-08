@@ -6,7 +6,7 @@ router.route('/')
     .post(scam.newScam);
 
 router.route('/')
-    .get(scam.getScam);
+    .get(scam.getScams);
 
 router.route('/upvote')
     .post(scam.upvote);

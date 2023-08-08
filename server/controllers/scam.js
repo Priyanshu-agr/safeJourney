@@ -36,7 +36,7 @@ async function newScam(req, res) {
 }
 
 // Data retrieval from database in sorted order (descending of votes)
-async function getScam(req, res) {
+async function getScams(req, res) {
     try{
     const scams = await Scam.find({}).sort({ votes: -1 });
     res.json(scams);
@@ -75,4 +75,4 @@ async function downvote(req, res) {
     }
 }
 
-module.exports = { newScam, getScam, upvote, downvote };
+module.exports = { newScam, getScams, upvote, downvote };

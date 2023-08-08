@@ -14,11 +14,8 @@ async function displayScams(req, res) {
     try {
         //user location user allow us to fetch
         const query = req.body.location;
-        // console.log(query);
         // const userLati = query.latitudeUser;
         // const userLng = query.longitudeUser;
-        const address = utils.addressTrimmed(query);
-        // console.log(address);
 
         const key = BING_KEY;
         const url = "https://dev.virtualearth.net/REST/v1/Locations?q=" + query + "&output=json&key=" + key;
@@ -27,6 +24,7 @@ async function displayScams(req, res) {
         let resScams = [];
         let lat1;
         let lng1;
+
         await axios.get(url)
             .then((res) => {
                 lat1 = res.data.resourceSets[0].resources[0].geocodePoints[0].coordinates[0];
@@ -40,7 +38,7 @@ async function displayScams(req, res) {
             let dist = utils.getDistance(lat1, lng1, scam.coordinatex, scam.coordinatey);
             dist = dist / 1000;
             dist = Math.floor(dist);
-            if (dist <= 5) {
+            if (dist <= 6) {
                 resScams.push(scam);
             }
         })
