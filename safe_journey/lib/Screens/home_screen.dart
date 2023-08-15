@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:safe_journey/data_base.dart';
 import 'package:safe_journey/models/scam_model.dart';
@@ -367,6 +369,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.lightBlue,
                 ),
               ),
+            ),
+          if(scams.isEmpty)
+            Column(
+              children: [
+                SizedBox(
+                  height:300,width:300,child: Lottie.asset("assets/animations/no_records.json")),
+                  Text("No Results Found",style: GoogleFonts.poppins(fontSize: 25,fontWeight: FontWeight.w500)),
+              ],
             ),
           if (scams.isNotEmpty && isLoading == false)
             GridView.builder(

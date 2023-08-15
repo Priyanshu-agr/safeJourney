@@ -15,8 +15,8 @@ class Data extends ChangeNotifier {
     return {..._appBarItems};
   }
 
-  static const address = String.fromEnvironment("ADDRESS");
-  // static const address = "http://localhost:3000";
+  // static const address = String.fromEnvironment("ADDRESS");
+  static const address = "http://localhost:3000";
 
   Future<void> sendData(toSend) async {
     print(toSend);
