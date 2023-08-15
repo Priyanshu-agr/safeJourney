@@ -2,14 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:safe_journey/Screens/about_us_screen.dart';
-import 'package:safe_journey/Screens/address_screen.dart';
-import 'package:safe_journey/Screens/app_drawer.dart';
 import 'package:safe_journey/Screens/contact_us.dart';
 import 'package:safe_journey/Screens/home_screen.dart';
 import 'package:safe_journey/Screens/input_form.dart';
 import 'package:safe_journey/data_base.dart';
-import 'data_base.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,12 +20,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'SafeJourney',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.purple, useMaterial3: true),
+      theme: ThemeData(primarySwatch: Colors.lightBlue, useMaterial3: true),
       home: ChangeNotifierProvider(
         create: (context) => Data(),
-        child: const MyHomePage(title: 'Flutter Demo Home Page'),
+        child: const MyHomePage(title: 'SafeJourney'),
       ),
     );
   }
@@ -62,74 +58,14 @@ class _MyHomePageState extends State<MyHomePage> {
     return (MediaQuery.of(context).size.width < 885 &&
             MediaQuery.of(context).size.width > 400)
         ? Scaffold(
-            backgroundColor: Color.fromARGB(255, 233, 159, 247),
-            // appBar: AppBar(
-            //   backgroundColor: Color.fromARGB(255, 233, 159, 247),
-            //   centerTitle: true,
-            //   title: (MediaQuery.of(context).size.width > 885)
-            //       ? Row(
-            //           mainAxisAlignment: MainAxisAlignment.center,
-            //           children: [
-            //             Container(
-            //               decoration: const BoxDecoration(
-            //                 border: Border(
-            //                   left: BorderSide(
-            //                     color: Colors.black,
-            //                     width: 1.5,
-            //                   ),
-            //                 ),
-            //               ),
-            //               child: Row(
-            //                 children: [
-            //                   ...appbarList.map((e) {
-            //                     // return AppBarButton(title: e, index: appbarList.indexOf(e));
-            //                     return InkWell(
-            //                       onTap: () {
-            //                         final index = appbarList.indexOf(e);
-            //                         print("${appbarList.indexOf(e)} : $e");
-            //                         setState(() {
-            //                           screenIdx = index;
-            //                         });
-            //                       },
-            //                       child: Container(
-            //                         decoration: const BoxDecoration(
-            //                           border: Border(
-            //                             bottom: BorderSide(
-            //                               color: Colors.black,
-            //                               width: 1.5,
-            //                             ),
-            //                             right: BorderSide(
-            //                               color: Colors.black,
-            //                               width: 1.5,
-            //                             ),
-            //                           ),
-            //                         ),
-            //                         padding: const EdgeInsets.all(8),
-            //                         child: Text(
-            //                           e,
-            //                         ),
-            //                       ),
-            //                     );
-            //                   }),
-            //                 ],
-            //               ),
-            //             ),
-            //           ],
-            //         )
-            //       : Text(
-            //           "SafeJourney",
-            //           style: Theme.of(context)
-            //               .textTheme
-            //               .headlineLarge
-            //               ?.copyWith(fontWeight: FontWeight.bold),
-            //         ),
-            // ),
+            // backgroundColor: Color.fromARGB(255, 233, 159, 247),
+      backgroundColor: Color(0xffb0e6ff),
             body: Row(
               children: [
                 Expanded(
                   flex: 5,
                   child: Container(
-                    color: Color.fromARGB(255, 233, 159, 247),
+                    color: Color(0xffb0e6ff),
                     child: Column(
                       children: [
                         ...appbarItems.entries.map((e) {
@@ -178,9 +114,9 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         : (MediaQuery.of(context).size.width < 400)
             ? Scaffold(
-                backgroundColor: Color.fromARGB(255, 233, 159, 247),
+                backgroundColor: Color(0xffb0e6ff),
                 appBar: AppBar(
-                  backgroundColor: Color.fromARGB(255, 233, 159, 247),
+                  backgroundColor: Color(0xffb0e6ff),
                   centerTitle: true,
                   title: (MediaQuery.of(context).size.width > 630)
                       ? Row(
@@ -311,7 +247,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               )
             : Scaffold(
-                backgroundColor: Color.fromARGB(255, 233, 159, 247),
+                backgroundColor: Color(0xffb0e6ff),
                 // backgroundColor: Color(0xff2A2929),
                 appBar: AppBar(
                   // toolbarOpacity: 1,
@@ -391,8 +327,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   gap: 8,
                                   color: Colors.black,
                                   activeColor: Colors.black,
-                                  tabBackgroundColor: Color.fromARGB(
-                                      255, 235, 192, 246),
+                                  tabBackgroundColor: Color(0xffc5e7ff),
                                   padding: EdgeInsets.symmetric(horizontal: 16,vertical: 10),
                                   tabActiveBorder: Border.all(
                                     width: 1.2,

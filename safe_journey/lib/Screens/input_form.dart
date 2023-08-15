@@ -64,6 +64,9 @@ class _InputFormState extends State<InputForm> {
     datecontroller.clear();
     locationcontroller.clear();
     _form.currentState?.save();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("Response Submitted"))
+    );
   }
 
   @override
@@ -76,7 +79,7 @@ class _InputFormState extends State<InputForm> {
           children: [
             TextFormField(
               controller: titlecontroller,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   hintText: "Enter Title", label: Text("Title")),
               onTapOutside: (_) {
                 title = titlecontroller.text;
@@ -84,7 +87,7 @@ class _InputFormState extends State<InputForm> {
             ),
             TextFormField(
               controller: bodycontroller,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   hintText: "Enter body text", label: Text("Body")),
               onTapOutside: (_) {
                 body = bodycontroller.text;
@@ -108,7 +111,7 @@ class _InputFormState extends State<InputForm> {
                   width: constrains.maxWidth * 0.5,
                   child: TextField(
                     controller: datecontroller,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       label: Text("Enter Date"),
                     ),
                     onTap: () async {
@@ -137,13 +140,13 @@ class _InputFormState extends State<InputForm> {
             ),
             TextFormField(
               controller: locationcontroller,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   hintText: "Enter location", label: Text("Location")),
               onTapOutside: (_) {
                 location = locationcontroller.text;
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             FittedBox(
@@ -153,8 +156,8 @@ class _InputFormState extends State<InputForm> {
                   SubmitForm();
                 },
                 child: Container(
-                    child: Text("Submit"),
-                    padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                    child: const Text("Submit"),
+                    padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
                 ),
               ),
             ),

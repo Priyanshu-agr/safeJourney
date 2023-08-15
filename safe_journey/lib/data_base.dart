@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 class Data extends ChangeNotifier {
@@ -16,8 +15,8 @@ class Data extends ChangeNotifier {
     return {..._appBarItems};
   }
 
-  // final address = dotenv.get("ADDRESS");
   static const address = String.fromEnvironment("ADDRESS");
+  // static const address = "http://localhost:3000";
 
   Future<void> sendData(toSend) async {
     print(toSend);
@@ -43,4 +42,18 @@ class Data extends ChangeNotifier {
     );
     return request.body;
   }
+
+  Future<String> sendCoordinates(loc) async {
+    print(loc);
+    final location = {'location': jsonEncode(loc)};
+    print("Location Sent in the format: \n$location");
+    final url = Uri.parse("$address/");
+    final request = await http.post(
+      url,
+      body: location,
+      encoding: Encoding.getByName('utf-8'),
+    );
+    return request.body;
+  }
+
 }

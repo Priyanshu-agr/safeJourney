@@ -2,12 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:safe_journey/data_base.dart';
-import 'package:http/http.dart' as http;
 import 'package:safe_journey/models/scam_model.dart';
 
 // 395 - 345
@@ -22,87 +21,90 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final _searchController = TextEditingController();
   var searchText;
-  String? _currentAddress;
-  List<Scam> scams = [
-    Scam(
-        id: "id_abcdefg",
-        title: "Title1",
-        body:
-            "This is the body for title1. Here we can add many things like reviews and comments or a brief description",
-        author: "Author1",
-        date: DateTime.now(),
-        location: "location_1",
-        votes: 3,
-        coordinatex: 21.54654,
-        coordinatey: 64.3146),
-    Scam(
-        id: "id_hijklmnop_2",
-        title: "Title2",
-        body:
-            "This is the body for title2. Here we can add many things like reviews and comments or a brief description",
-        author: "Author2",
-        date: DateTime.now(),
-        location: "location_2",
-        votes: 10,
-        coordinatex: 84.849436,
-        coordinatey: 54.6482),
-    Scam(
-        id: "id_hijklmnop_3",
-        title: "Title2",
-        body:
-            "This is the body for title3. Here we can add many things like reviews and comments or a brief description",
-        author: "Author3",
-        date: DateTime.now(),
-        location: "location_3",
-        votes: 10,
-        coordinatex: 84.849436,
-        coordinatey: 54.6482),
-    Scam(
-        id: "id_hijklmnop_4",
-        title: "Title4",
-        body:
-            "This is the body for title4. Here we can add many things like reviews and comments or a brief description",
-        author: "Author4",
-        date: DateTime.now(),
-        location: "location_4",
-        votes: 10,
-        coordinatex: 84.849436,
-        coordinatey: 54.6482),
-    Scam(
-        id: "id_hijklmnop_5",
-        title: "Title5",
-        body:
-            "This is the body for title5. Here we can add many things like reviews and comments or a brief description",
-        author: "Author5",
-        date: DateTime.now(),
-        location: "location_5",
-        votes: 10,
-        coordinatex: 84.849436,
-        coordinatey: 54.6482),
-    Scam(
-        id: "id_hijklmnop_6",
-        title: "Title6",
-        body:
-            "This is the body for title2. Here we can add many things like reviews and comments or a brief description",
-        author: "Author6",
-        date: DateTime.now(),
-        location: "location_6",
-        votes: 10,
-        coordinatex: 84.849436,
-        coordinatey: 54.6482),
-    Scam(
-        id: "id_hijklmnop_7",
-        title: "Title7",
-        body:
-            "This is the body for title7. Here we can add many things like reviews and comments or a brief description",
-        author: "Author7",
-        date: DateTime.now(),
-        location: "location_7",
-        votes: 10,
-        coordinatex: 84.849436,
-        coordinatey: 54.6482),
-  ];
+  // String? _currentAddress;
+  // List<Scam> scams = [
+  //   Scam(
+  //       id: "id_abcdefg",
+  //       title: "Title1",
+  //       body:
+  //           "This is the body for title1. Here we can add many things like reviews and comments or a brief description",
+  //       author: "Author1",
+  //       date: DateTime.now(),
+  //       location: "location_1",
+  //       votes: 3,
+  //       coordinatex: 21.54654,
+  //       coordinatey: 64.3146),
+  //   Scam(
+  //       id: "id_hijklmnop_2",
+  //       title: "Title2",
+  //       body:
+  //           "This is the body for title2. Here we can add many things like reviews and comments or a brief description",
+  //       author: "Author2",
+  //       date: DateTime.now(),
+  //       location: "location_2",
+  //       votes: 10,
+  //       coordinatex: 84.849436,
+  //       coordinatey: 54.6482),
+  //   Scam(
+  //       id: "id_hijklmnop_3",
+  //       title: "Title2",
+  //       body:
+  //           "This is the body for title3. Here we can add many things like reviews and comments or a brief description",
+  //       author: "Author3",
+  //       date: DateTime.now(),
+  //       location: "location_3",
+  //       votes: 10,
+  //       coordinatex: 84.849436,
+  //       coordinatey: 54.6482),
+  //   Scam(
+  //       id: "id_hijklmnop_4",
+  //       title: "Title4",
+  //       body:
+  //           "This is the body for title4. Here we can add many things like reviews and comments or a brief description",
+  //       author: "Author4",
+  //       date: DateTime.now(),
+  //       location: "location_4",
+  //       votes: 10,
+  //       coordinatex: 84.849436,
+  //       coordinatey: 54.6482),
+  //   Scam(
+  //       id: "id_hijklmnop_5",
+  //       title: "Title5",
+  //       body:
+  //           "This is the body for title5. Here we can add many things like reviews and comments or a brief description",
+  //       author: "Author5",
+  //       date: DateTime.now(),
+  //       location: "location_5",
+  //       votes: 10,
+  //       coordinatex: 84.849436,
+  //       coordinatey: 54.6482),
+  //   Scam(
+  //       id: "id_hijklmnop_6",
+  //       title: "Title6",
+  //       body:
+  //           "This is the body for title2. Here we can add many things like reviews and comments or a brief description",
+  //       author: "Author6",
+  //       date: DateTime.now(),
+  //       location: "location_6",
+  //       votes: 10,
+  //       coordinatex: 84.849436,
+  //       coordinatey: 54.6482),
+  //   Scam(
+  //       id: "id_hijklmnop_7",
+  //       title: "Title7",
+  //       body:
+  //           "This is the body for title7. Here we can add many things like reviews and comments or a brief description",
+  //       author: "Author7",
+  //       date: DateTime.now(),
+  //       location: "location_7",
+  //       votes: 10,
+  //       coordinatex: 84.849436,
+  //       coordinatey: 54.6482),
+  // ];
+  List<Scam> scams = [];
+
   Position? _currentPosition;
+  bool isLoading = false;
   @override
   void dispose() {
     // TODO: implement dispose
@@ -110,8 +112,11 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
-  void SubmitData() {
+  void submitData() {
     if (_searchController.text.isNotEmpty) {
+      setState(() {
+        isLoading = true;
+      });
       final response = Provider.of<Data>(context, listen: false)
           .sendLocation(_searchController.text)
           .then((value) {
@@ -131,6 +136,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   coordinatey: element['coordinatey']);
             })
           ];
+        });
+        setState(() {
+          isLoading = false;
         });
         print(scams);
       });
@@ -169,7 +177,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _getCurrentPosition() async {
     final hasPermission = await _handleLocationPermission();
-    print(hasPermission);
+    if (kDebugMode) {
+      print(hasPermission);
+    }
     if (!hasPermission) return;
     await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
         .then((Position position) {
@@ -185,23 +195,24 @@ class _HomeScreenState extends State<HomeScreen> {
       return ListView(
         primary: true,
         // shrinkWrap: true,
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         children: [
-          if(MediaQuery.of(context).size.width < 883 && MediaQuery.of(context).size.width > 400)
+          if (MediaQuery.of(context).size.width < 883 &&
+              MediaQuery.of(context).size.width > 400)
             Center(
               child: Container(
-                padding: EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.only(bottom: 10),
                 child: Text(
                   "SafeJourney",
                   style: Theme.of(context)
                       .textTheme
                       .headlineLarge
-                      ?.copyWith(fontWeight: FontWeight.bold,fontSize: 40),
+                      ?.copyWith(fontWeight: FontWeight.bold, fontSize: 40),
                 ),
               ),
             ),
           if (MediaQuery.of(context).size.width > 883)
-            Center(
+            const Center(
               child: Text(
                 "SafeJourney",
                 style: TextStyle(fontSize: 100, fontWeight: FontWeight.bold),
@@ -209,12 +220,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           Center(
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               width: (MediaQuery.of(context).size.width > 630)
                   ? constraints.maxWidth * 0.65
                   : constraints.maxWidth * 0.8,
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 231, 229, 229),
+                color: const Color.fromARGB(255, 231, 229, 229),
                 borderRadius: BorderRadius.circular(1000),
                 border: Border.all(
                   width: 1.2,
@@ -226,18 +237,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 10),
                       child: SizedBox(
                         width: constraints.maxWidth * 0.405,
                         child: TextFormField(
                           controller: _searchController,
                           decoration: const InputDecoration(
-                            hintText: "Search",
-                            hintStyle: TextStyle(
-                              fontSize: 20,
-                            ),
-                          ),
+                              hintText: "Search",
+                              hintStyle: TextStyle(
+                                fontSize: 20,
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                color: Color(0xff0074fc),
+                                width: 1.5,
+                              ))),
+                          autofocus: false,
                           onSaved: (value) {
                             searchText = value;
                             if (kDebugMode) {
@@ -256,11 +272,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               print("onTapOutside Triggered");
                             }
                           },
-                          onFieldSubmitted: (_){
+                          onFieldSubmitted: (_) {
                             if (kDebugMode) {
                               print("onFieldSubmit Triggered");
                             }
-                            SubmitData();
+                            submitData();
                           },
                         ),
                       ),
@@ -268,7 +284,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     InkWell(
                       borderRadius: BorderRadius.circular(100),
                       onTap: () {
-                        SubmitData();
+                        submitData();
                       },
                       child: Row(
                         children: [
@@ -277,16 +293,55 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: const Icon(Icons.search)),
                           if (constraints.maxWidth > 1050)
                             Container(
-                                padding: EdgeInsets.symmetric(horizontal: 3),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 3),
                                 child: const Text("Submit")),
                         ],
                       ),
                     ),
                     InkWell(
                       borderRadius: BorderRadius.circular(100),
-                      onTap: () {
-                        _getCurrentPosition();
-                        print("Thankyou for your location permission");
+                      onTap: () async {
+                        await _getCurrentPosition();
+                        if (kDebugMode) {
+                          print("Thankyou for your location permission");
+                          print(_currentPosition?.latitude);
+                          print(_currentPosition?.longitude);
+                          print(jsonEncode({"coordinates": _currentPosition}));
+                        }
+                        // TODO : send coordinates to server
+
+                        setState(() {
+                          isLoading = true;
+                        });
+                        final response =
+                            Provider.of<Data>(context, listen: false)
+                                .sendCoordinates({"coordinates": _currentPosition})
+                                .then((value) {
+                          List<dynamic> tempData = jsonDecode(value);
+                          setState(() {
+                            scams.clear();
+                            scams = [
+                              ...tempData.map((element) {
+                                return Scam(
+                                    id: element['_id'],
+                                    title: element['title'],
+                                    body: element['body'],
+                                    author: element['author'],
+                                    date: DateTime.parse(element['date']),
+                                    location: element['location'],
+                                    votes: element['votes'],
+                                    coordinatex: element['coordinatex'],
+                                    coordinatey: element['coordinatey']);
+                              })
+                            ];
+                          });
+                          setState(() {
+                            isLoading = false;
+                          });
+                          print(scams);
+                        });
+                      
                       },
                       child: Row(
                         children: [
@@ -295,7 +350,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: const Icon(Icons.location_on)),
                           if (constraints.maxWidth > 840)
                             Container(
-                                padding: EdgeInsets.symmetric(horizontal: 3),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 3),
                                 child: const Text("My Location")),
                         ],
                       ),
@@ -305,14 +361,31 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          if (scams.isNotEmpty)
+          if (isLoading)
+            Container(
+              height: MediaQuery.of(context).size.height * 0.5,
+              child: const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.lightBlue,
+                ),
+              ),
+            ),
+          if(scams.isEmpty)
+            Column(
+              children: [
+                SizedBox(
+                  height:300,width:300,child: Lottie.asset("assets/animations/no_records.json")),
+                  Text("No Results Found",style: GoogleFonts.poppins(fontSize: 25,fontWeight: FontWeight.w500)),
+              ],
+            ),
+          if (scams.isNotEmpty && isLoading == false)
             GridView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+              physics: const NeverScrollableScrollPhysics(),
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
               itemCount: scams.length,
               // primary: true,
               shrinkWrap: true,
-              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 300,
                 childAspectRatio: 3 / 4.06,
                 crossAxisSpacing: 10,
@@ -321,17 +394,18 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (context, idx) {
                 return Container(
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 190, 38, 204),
+                    // color: Color.fromARGB(255, 190, 38, 204),
+                    color: Colors.blue,
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           scams[idx].title,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
                           ),
